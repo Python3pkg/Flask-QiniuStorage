@@ -4,7 +4,7 @@
 '''Tests for Flask-QiniuStorage.'''
 
 import unittest
-import urllib
+import urllib.request, urllib.parse, urllib.error
 from flask import Flask
 from flask_qiniustorage import Qiniu
 
@@ -41,7 +41,7 @@ class FlaskQiniuStorageTestCase(unittest.TestCase):
         filename = 'test_url'
         self.qiniu.save(data, filename)
         url = self.qiniu.url(filename)
-        resp = urllib.urlopen(url)
+        resp = urllib.request.urlopen(url)
         self.assertEqual(data, resp.read())
 
 
